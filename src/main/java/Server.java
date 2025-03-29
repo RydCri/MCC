@@ -7,19 +7,20 @@ public class Server {
 
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
-        System.out.println("Server started");
+        System.out.println("Server started " + serverSocket.getLocalPort());
+
     }
 
     public void start(){
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
-                System.out.println("A new client has connected.");
                 ClientHandler clientHandler = new ClientHandler(socket);
 
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
+            System.out.println(serverSocket.getLocalSocketAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,8 +38,8 @@ public class Server {
 
     public static void main(String[] args ) throws IOException {
 
-        Server server = new Server(new ServerSocket(1140));
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server = new Server(serverSocket);
         server.start();
-
     }
 }
