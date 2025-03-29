@@ -19,7 +19,7 @@ public class Client {
         } catch (IOException e){
             closeEverything(socket, bufferedWriter, bufferedReader);
         }
-        System.out.println(username + "(You)" + " connected to Server " + socket.getLocalSocketAddress());
+        System.out.println(username + " (You)" + " connected to Server " + socket.getLocalSocketAddress());
     }
 
     public void sendMessage() {
@@ -53,6 +53,7 @@ public class Client {
 
         }).start();
     }
+
 
     public void closeEverything(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader){
         try {
