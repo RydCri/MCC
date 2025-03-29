@@ -7,6 +7,7 @@ public class Server {
 
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
+        System.out.println("Server started");
     }
 
     public void start(){
@@ -15,6 +16,9 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("A new client has connected.");
                 ClientHandler clientHandler = new ClientHandler(socket);
+
+                Thread thread = new Thread(clientHandler);
+                thread.start();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,5 +33,12 @@ public class Server {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args ) throws IOException {
+
+        Server server = new Server(new ServerSocket(1140));
+        server.start();
+
     }
 }
