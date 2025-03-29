@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -16,6 +14,10 @@ public class ClientHandler implements Runnable{
     ClientHandler(Socket socket){
         try {
             this.socket = socket;
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.clientUsername = bufferedReader.readLine();
+            clientHandlers.add(this);
         } catch (IOException e){
 
         }
