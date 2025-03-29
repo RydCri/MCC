@@ -1,5 +1,7 @@
 <h3>This is a demo of a real time chat app with multiple clients using sockets.</h3> <br></br>
+
 ![screenshot.png](src%2Fmain%2Fresources%2Fscreenshot.png)
+
 <ul>
 <li> Run the main method in Server first, then run Client </li>
 
